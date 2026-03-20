@@ -19,13 +19,12 @@
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0,0,0,0.06);
     padding: 16px 40px;
-    display: flex; justify-content: space-between; align-items: center;
   }
   header .logo { font-size: 15px; font-weight: 700; color: #222; }
   header .logo span { font-weight: 400; color: #999; margin-left: 8px; }
-  .hero {
-    max-width: 720px; margin: 0 auto; padding: 100px 40px 60px;
-  }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 40px; }
+  /* Hero */
+  .hero { padding-top: 100px; padding-bottom: 60px; }
   .hero .badge {
     display: inline-block; font-size: 12px; font-weight: 700;
     letter-spacing: 2px; text-transform: uppercase; color: #c07a4a; margin-bottom: 28px;
@@ -37,14 +36,26 @@
   .hero .desc { font-size: 16px; color: #888; line-height: 1.8; margin-bottom: 20px; }
   .hero .meta { font-size: 13px; color: #aaa; }
   .hero .meta span { margin-right: 16px; }
-  .toc { max-width: 720px; margin: 0 auto; padding: 40px 40px 60px; }
-  .toc h2 { font-size: 14px; font-weight: 600; color: #999; text-align: center; margin-bottom: 24px; }
-  .toc ul { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  .toc li { font-size: 15px; color: #666; }
-  .toc li .num { display: inline-block; width: 28px; color: #c07a4a; font-weight: 600; font-size: 13px; }
-  .steps { max-width: 720px; margin: 0 auto; padding: 0 40px 80px; }
-  .step { margin-bottom: 80px; }
-  .step-label { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  /* TOC */
+  .toc { padding: 40px 0 60px; }
+  .toc h2 {
+    font-size: 13px; font-weight: 600; color: #aaa;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
+  }
+  .toc ol {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .toc li { font-size: 15px; color: #666; display: flex; align-items: baseline; gap: 12px; }
+  .toc li .num {
+    color: #c07a4a; font-weight: 600; font-size: 13px; min-width: 24px;
+  }
+  /* Divider */
+  .divider { padding: 0; }
+  .divider hr { border: none; border-top: 1px solid rgba(0,0,0,0.06); margin-bottom: 60px; }
+  /* Steps */
+  .steps { padding-bottom: 40px; }
+  .step { margin-bottom: 72px; }
+  .step-label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
   .step-label .num {
     display: inline-flex; align-items: center; justify-content: center;
     background: #c07a4a; color: #fff; width: 36px; height: 36px;
@@ -57,44 +68,56 @@
     padding: 8px; box-shadow: 0 2px 20px rgba(0,0,0,0.04);
   }
   .step-img img { width: 100%; border-radius: 8px; display: block; }
-  .step-caption { text-align: center; font-size: 13px; color: #aaa; margin-top: 12px; font-style: italic; }
-  .tips-section { max-width: 720px; margin: 0 auto; padding: 0 40px 80px; }
+  .step-caption {
+    font-size: 13px; color: #aaa; margin-top: 12px;
+    padding-left: 48px; font-style: italic;
+  }
+  /* Tips */
+  .tips-section { padding-bottom: 80px; }
   .tips-section h2 {
-    font-size: 24px; font-weight: 600; color: #222; margin-bottom: 32px;
+    font-size: 22px; font-weight: 600; color: #222; margin-bottom: 28px;
     padding-bottom: 12px; border-bottom: 2px solid rgba(0,0,0,0.06);
   }
-  .tip { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
-  .tip-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  .tip { display: flex; gap: 14px; margin-bottom: 22px; align-items: flex-start; }
+  .tip-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
   .tip-text { font-size: 16px; color: #555; line-height: 1.7; }
   .tip-text strong { color: #c07a4a; font-weight: 600; }
-  footer { text-align: center; padding: 40px; font-size: 13px; color: #ccc; border-top: 1px solid rgba(0,0,0,0.04); }
-  .divider { max-width: 720px; margin: 0 auto; padding: 0 40px; }
-  .divider hr { border: none; border-top: 1px solid rgba(0,0,0,0.06); margin-bottom: 60px; }
+  /* Footer */
+  footer {
+    text-align: center; padding: 40px; font-size: 13px; color: #ccc;
+    border-top: 1px solid rgba(0,0,0,0.04);
+  }
 </style>
 </head>
 <body>
 <header>
   <div class="logo">Google Chat <span>/ Webhook セットアップガイド</span></div>
 </header>
+
+<div class="container">
+
 <section class="hero">
   <div class="badge">COMPLETE SETUP GUIDE</div>
   <h1>Google Chat<br><em>Webhook</em><br>追加方法</h1>
   <p class="desc">重要メール通知を Google Chat スペースに自動送信するための Webhook 設定手順を、画面のスクリーンショット付きでステップバイステップで解説します。</p>
   <div class="meta"><span>所要時間: 約5分</span><span>難易度: 初心者向け</span></div>
 </section>
+
 <section class="toc">
   <h2>目次</h2>
-  <ul>
-    <li><span class="num">01</span> 「通知用」スペースをクリック</li>
-    <li><span class="num">02</span> 「アプリと統合」をクリック</li>
-    <li><span class="num">03</span> 「Webhook を追加」をクリック</li>
+  <ol>
+    <li><span class="num">01</span>「通知用」スペースをクリック</li>
+    <li><span class="num">02</span>「アプリと統合」をクリック</li>
+    <li><span class="num">03</span>「Webhook を追加」をクリック</li>
     <li><span class="num">04</span> 名前に「重要メール通知」と入力</li>
-    <li><span class="num">05</span> 「保存」をクリック</li>
+    <li><span class="num">05</span>「保存」をクリック</li>
     <li><span class="num">06</span> Webhook のオプションメニューを開く</li>
-    <li><span class="num">07</span> 「リンクをコピー」をクリック</li>
-  </ul>
+    <li><span class="num">07</span>「リンクをコピー」をクリック</li>
+  </ol>
 </section>
+
 <div class="divider"><hr></div>
+
 <section class="steps">
   <div class="step">
     <div class="step-label"><div class="num">1</div><h3>「通知用」スペースをクリック</h3></div>
@@ -137,13 +160,18 @@
     <p class="step-caption">「リンクをコピー」で Webhook URL を取得</p>
   </div>
 </section>
+
 <div class="divider"><hr></div>
+
 <section class="tips-section">
   <h2>活用のコツ</h2>
   <div class="tip"><div class="tip-icon">📌</div><div class="tip-text"><strong>1スペース1用途</strong> — 通知の種類ごとにスペースを分けると見やすい</div></div>
   <div class="tip"><div class="tip-icon">🔒</div><div class="tip-text"><strong>Webhook URL は秘密情報</strong> — 知っている人は誰でも投稿できるため漏洩注意</div></div>
   <div class="tip"><div class="tip-icon">⚡</div><div class="tip-text"><strong>GAS と組み合わせ</strong> — Gmail の重要メールを自動で Chat に転送できる</div></div>
 </section>
+
+</div>
+
 <footer>Google Chat Webhook セットアップガイド</footer>
 </body>
 </html>
